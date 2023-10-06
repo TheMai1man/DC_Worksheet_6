@@ -19,17 +19,13 @@ namespace WEB_API_BusinessServer.Controllers
             RestResponse restResponse = restClient.Execute(restRequest);
 
             DataIntermed data = JsonConvert.DeserializeObject<DataIntermed>(restResponse.Content);
-            
+
             if (data == null)
             {
                 return NotFound();
             }
-            else
-            {
-                Console.WriteLine(data.fname);
 
-                return Ok(data);
-            }
+            return Ok(data);
         }
     }
 }

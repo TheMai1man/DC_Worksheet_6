@@ -19,23 +19,21 @@ namespace WEB_API_DataServer.Controllers
             {
                 return NotFound();
             }
-            else
-            {
-                data.acct = account.acctNo;
-                data.lname = account.lastName;
-                data.fname = account.firstName;
-                data.pin = account.pin;
-                data.bal = account.balance;
 
-                return Ok(data);
-            }
+            data.Acct = account.acctNo;
+            data.Lname = account.lastName;
+            data.Fname = account.firstName;
+            data.Pin = account.pin;
+            data.Bal = account.balance;
+
+            return Ok(data);
         }
 
         [HttpPost]
         [Route("search")]
         public IActionResult EntryBySurname([FromBody]SearchData searchData)
         {
-            Account account = Database.GetAcctBySurname(searchData.searchStr);
+            Account account = Database.GetAcctBySurname(searchData.SearchStr);
             DataIntermed data = new DataIntermed();
 
             if (account == null)
@@ -44,11 +42,11 @@ namespace WEB_API_DataServer.Controllers
             }
             else
             {
-                data.acct = account.acctNo;
-                data.lname = account.lastName;
-                data.fname = account.firstName;
-                data.pin = account.pin;
-                data.bal = account.balance;
+                data.Acct = account.acctNo;
+                data.Lname = account.lastName;
+                data.Fname = account.firstName;
+                data.Pin = account.pin;
+                data.Bal = account.balance;
 
                 return Ok(data);
             }

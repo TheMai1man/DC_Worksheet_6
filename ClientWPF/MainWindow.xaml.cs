@@ -38,18 +38,18 @@ namespace ClientWPF
 
             DataIntermed data = JsonConvert.DeserializeObject<DataIntermed>(restResponse.Content);
            
-            fNameBox.Text = data.fname;
-            lNameBox.Text = data.lname;
-            acctNoBox.Text = data.acct.ToString();
-            pinBox.Text = data.pin.ToString("D4");
-            balBox.Text = "$" + data.bal.ToString();
+            fNameBox.Text = data.Fname;
+            lNameBox.Text = data.Lname;
+            acctNoBox.Text = data.Acct.ToString();
+            pinBox.Text = data.Pin.ToString("D4");
+            balBox.Text = "$" + data.Bal.ToString();
         }
 
         private void SurnameButton_Click(object sender, RoutedEventArgs e)
         {
             string searchTerm = SurnameBox.Text;
             SearchData data = new SearchData();
-            data.searchStr = searchTerm;
+            data.SearchStr = searchTerm;
 
             RestRequest restRequest = new RestRequest("/api/search/surname", Method.Post);
             restRequest.RequestFormat = RestSharp.DataFormat.Json;
@@ -64,11 +64,11 @@ namespace ClientWPF
             }
             else
             {
-                fNameBox.Text = result.fname;
-                lNameBox.Text = result.lname;
-                acctNoBox.Text = result.acct.ToString();
-                pinBox.Text = result.pin.ToString("D4");
-                balBox.Text = "$" + result.bal.ToString();
+                fNameBox.Text = result.Fname;
+                lNameBox.Text = result.Lname;
+                acctNoBox.Text = result.Acct.ToString();
+                pinBox.Text = result.Pin.ToString("D4");
+                balBox.Text = "$" + result.Bal.ToString();
             }
         }
     }

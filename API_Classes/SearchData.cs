@@ -3,6 +3,6 @@ namespace API_Classes
 {
     public class SearchData
     {
-        public string searchStr;
+        public string SearchStr { get; set; }
     }
 }
