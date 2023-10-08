@@ -18,6 +18,7 @@ namespace ClientWPF
     {
         private RestClient restClient = new RestClient("http://localhost:5076");
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,9 +45,14 @@ namespace ClientWPF
             DataIntermed data = await IndexSearch(SearchBox.Text);
 
             ToggleGUI();
-
-            UpdateGUI(data);
-
+            if (data != null)
+            {
+                UpdateGUI(data);
+            }
+            else
+            {
+                ErrorMsg("Index out of bounds!");
+            }
             ToggleGUI();
         }
 
@@ -57,7 +63,14 @@ namespace ClientWPF
             restRequest.AddUrlSegment("index", index);
             RestResponse restResponse = restClient.Execute(restRequest);
 
-            return JsonConvert.DeserializeObject<DataIntermed>(restResponse.Content);
+            if(restResponse.IsSuccessful == false)
+            {
+                return null;
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<DataIntermed>(restResponse.Content);
+            }
         }
 
 
@@ -66,15 +79,15 @@ namespace ClientWPF
             DataIntermed data = await SurnameSearch(SurnameBox.Text);
 
             ToggleGUI();
-
-            UpdateGUI(data);
-
-            ToggleGUI();
-
-            if (data == null)
+            if(data != null)
+            {
+                UpdateGUI(data);
+            }
+            else
             {
                 ErrorMsg("No results for that surname!");
             }
+            ToggleGUI();
         }
 
 
@@ -88,7 +101,14 @@ namespace ClientWPF
             restRequest.AddBody(data);
             RestResponse restResponse = restClient.Execute(restRequest);
 
-            return JsonConvert.DeserializeObject<DataIntermed>(restResponse.Content);
+            if(restResponse.IsSuccessful == false)
+            {
+                return null;
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<DataIntermed>(restResponse.Content);
+            }
         }
 
 

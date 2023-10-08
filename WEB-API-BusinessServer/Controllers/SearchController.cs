@@ -20,6 +20,11 @@ namespace WEB_API_BusinessServer.Controllers
 
             RestResponse restResponse = restClient.Execute(restRequest);
 
+            if(restResponse.IsSuccessful == false)
+            {
+                return NotFound();
+            }
+
             return Ok(JsonConvert.DeserializeObject<DataIntermed>(restResponse.Content));
         }
     }

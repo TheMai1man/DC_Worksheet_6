@@ -20,7 +20,7 @@ namespace WEB_API_BusinessServer.Controllers
 
             DataIntermed data = JsonConvert.DeserializeObject<DataIntermed>(restResponse.Content);
 
-            if (data == null)
+            if (restResponse.IsSuccessful == false)
             {
                 return NotFound();
             }

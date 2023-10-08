@@ -17,7 +17,7 @@ namespace WEB_API_DataServer.Controllers
 
             if (account == null)
             {
-                return NotFound();
+                return BadRequest("Index out of bounds!");
             }
 
             data.Acct = account.acctNo;
